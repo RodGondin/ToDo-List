@@ -32,7 +32,7 @@
   gap: 8px;
 }
 
-input {
+.input {
   width: 39.875rem;
   height: 48px;
   background-color: var(--gray-500);
