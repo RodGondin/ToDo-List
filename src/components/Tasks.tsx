@@ -3,8 +3,14 @@ import { v4 as uuidv4 } from 'uuid';
 import trash from '../assets/trash.svg';
 import styles from './Tasks.module.css';
 
+interface TaskType {
+  id: string;
+  message: string;
+  isDone: boolean;
+} 
+
 export function Tasks() {
-  const tasks = [
+  const tasks: TaskType[] = [
     {
       id: uuidv4(),
       message: 'Estudar React',
@@ -32,7 +38,7 @@ export function Tasks() {
               {task.isDone ? <input className={styles.checkbox} type='radio' checked /> : <input className={styles.checkbox} type='radio'/>}
 
               <h1 className={styles.taskMessage}>{task.message}</h1>
-              
+
               <button>
                 <img src={trash} alt="Remover" />
               </button>
