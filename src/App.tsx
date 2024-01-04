@@ -1,6 +1,6 @@
 import styles from './App.module.css';
 import logo from './assets/logo.svg';
-import plusIcon from './assets/plus-icon.svg';
+import { PlusCircle, Clipboard } from "phosphor-react";
 // import clipboard from './assets/clipboard.svg';
 
 import { Tasks } from './components/Tasks.jsx';
@@ -14,7 +14,7 @@ function App() {
           <input className={styles.input} type="text" placeholder='Adicione uma nova tarefa' />
           <button>
             Criar
-            <img src={plusIcon} alt="Criar" />
+            <PlusCircle size={19} />
           </button>
         </div>
       </header>
@@ -40,15 +40,15 @@ function App() {
             </span>
 
           </section>
-          <div className={styles.line}/>
+          <div className={styles.line} />
           <section>
             {/* <div className={styles.noTasksMessage}>
-              <img src={clipboard} alt="clipboard" />
+              <Clipboard size={32} />
               <p className={`${styles.message} ${styles.bold}`}>Você ainda não tem tarefas cadastradas</p>
               <p className={styles.message}>Crie tarefas e organize seus itens a fazer</p>
             </div> */}
 
-            <Tasks/>
+            <Tasks />
 
           </section>
         </div>

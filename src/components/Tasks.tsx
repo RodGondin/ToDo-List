@@ -1,13 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import trash from '../assets/trash.svg';
+import { Trash } from "phosphor-react";
 import styles from './Tasks.module.css';
 
 interface TaskType {
   id: string;
   message: string;
   isDone: boolean;
-} 
+}
 
 export function Tasks() {
   const tasks: TaskType[] = [
@@ -28,6 +28,16 @@ export function Tasks() {
     },
   ];
 
+  function handleIsDoneTask(event: React.MouseEvent<HTMLInputElement>, taskId: string) {
+    console.log(taskId);
+    console.log(event);
+    if (event.target.checked) {
+      for (const task of tasks) {
+        task.isDone = taskId;
+      }
+    }
+  }
+
   return (
     <div>
       {tasks.map((task) => {
@@ -35,12 +45,12 @@ export function Tasks() {
           <div className={styles.taskCard} key={task.id}>
             <div className={styles.taskInsideBox}>
 
-              {task.isDone ? <input className={styles.checkbox} type='radio' checked /> : <input className={styles.checkbox} type='radio'/>}
+              <input className={styles.checkbox} type='radio' onClick={(event) => handleIsDoneTask(event, task.id)} />
 
               <h1 className={styles.taskMessage}>{task.message}</h1>
 
-              <button>
-                <img src={trash} alt="Remover" />
+              <button className={styles.trashButton}>
+                <Trash size={18} />
               </button>
             </div>
           </div>
