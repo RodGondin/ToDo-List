@@ -45,7 +45,7 @@
 }
 
 .inputDiv button {
-  width: 5.625rem;
+  width: 90px;
   height: 54px;
   background-color: var(--blue-dark);
   color: white;
@@ -127,8 +127,4 @@
   color: var(--gray-300);
   margin: 0;
   line-height: 140%;
-}
-
-.noTasksMessage img {
-  padding-bottom: 1rem;
 }
