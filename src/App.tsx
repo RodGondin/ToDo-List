@@ -1,7 +1,6 @@
 import styles from './App.module.css';
 import logo from './assets/logo.svg';
 import { PlusCircle, Clipboard } from "phosphor-react";
-// import clipboard from './assets/clipboard.svg';
 
 import { Tasks } from './components/Tasks.jsx';
 
