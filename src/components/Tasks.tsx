@@ -2,13 +2,19 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { Trash } from "phosphor-react";
 import styles from './Tasks.module.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface TaskType {
   id: string;
   message: string;
   isDone: boolean;
 }
+
+interface TasksProps {
+  addTaskCountChange: (newTask: TaskType) => void;
+  onTaskCountChange: (count: number) => void;
+  onDoneTaskCountChange: (doneCount: number) => void;
+};
 
 const tasks: TaskType[] = [
   {
@@ -28,8 +34,14 @@ const tasks: TaskType[] = [
   },
 ];
 
-export function Tasks() {
+export function Tasks({ addTaskCountChange, onTaskCountChange, onDoneTaskCountChange }: TasksProps) {
   const [tasksList, setTasksList] = useState<TaskType[]>(tasks);
+
+  useEffect(() => {
+    onTaskCountChange(tasksList.length);
+    const doneTaskCount = tasksList.filter(task => task.isDone).length;
+    onDoneTaskCountChange(doneTaskCount);
+  }, [tasksList]);
 
   function handleIsDoneTask(isChecked: boolean, taskToChange: TaskType) {
     const updatedTasks = tasksList.map(task => {
@@ -49,6 +61,11 @@ export function Tasks() {
     })
 
     setTasksList(tasksWithoutTheDeleted);
+  }
+
+  function newTasksList(addTaskCountChange: TaskType) {
+    setTasksList(prevTasks => [...prevTasks, addTaskCountChange])
+    console.log('ok');
   }
 
   return (

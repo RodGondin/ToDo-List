@@ -113,6 +113,10 @@
   background-color: var(--gray-400);
 }
 
+.content .hidden {
+  display: none;
+}
+
 .content .noTasksMessage {
   width: 100%;
   display: flex;
@@ -127,4 +131,8 @@
   color: var(--gray-300);
   margin: 0;
   line-height: 140%;
+}
+
+.noTasksMessage img {
+  padding-bottom: 1rem;
 }
