@@ -9,22 +9,36 @@
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-    color: var(--gray-100);
+
+    min-height: 44px;
 }
 
 .taskMessage {
     width: 100%;
+    padding: 0 1rem 0 1rem;
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 140%;
+    font-weight: 400;
+    color: var(--gray-100);
+}
+
+.taskMessageDone {
+    color: var(--gray-300);
+    text-decoration: line-through;
 }
 
 .checkbox {
     width: 18px;
     height: 18px;
+    accent-color: var(--purple-dark);
+    cursor: pointer;
 }
 
 .trashButton {
     background: transparent;
     border: 0;
-    color: var(--gray-400);
+    color: var(--gray-300);
     cursor: pointer;
     line-height: 0;
     border-radius: 2px;

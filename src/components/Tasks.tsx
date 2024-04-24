@@ -1,61 +1,45 @@
-import { v4 as uuidv4 } from 'uuid';
-
 import { Trash } from "phosphor-react";
 import styles from './Tasks.module.css';
+import { TaskType } from '../App';
 
-interface TaskType {
-  id: string;
-  message: string;
-  isDone: boolean;
-}
+interface TasksProps {
+  tasks: TaskType[];
+  setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>;
+};
 
-export function Tasks() {
-  const tasks: TaskType[] = [
-    {
-      id: uuidv4(),
-      message: 'Estudar React',
-      isDone: false,
-    },
-    {
-      id: uuidv4(),
-      message: 'Tomar café',
-      isDone: false,
-    },
-    {
-      id: uuidv4(),
-      message: 'Assistir serie',
-      isDone: true,
-    },
-  ];
-
-  function handleIsDoneTask(event: React.MouseEvent<HTMLInputElement>, taskId: string) {
-    console.log(taskId);
-    console.log(event);
-    if (event.target.checked) {
-      for (const task of tasks) {
-        task.isDone = taskId;
+export function Tasks({ tasks, setTasks }: TasksProps) {
+  const handleIsDoneTask = (isChecked: boolean, taskToChange: TaskType) => {
+    const updatedTasks = tasks.map(task => {
+      if (task.id === taskToChange.id) {
+        return { ...task, isDone: isChecked };
       }
-    }
-  }
+      return task;
+    });
+    setTasks(updatedTasks);
+  };
+
+  const deleteToDo = (taskToDelete: TaskType) => {
+    const tasksWithoutTheDeleted = tasks.filter(task => task.id !== taskToDelete.id);
+    setTasks(tasksWithoutTheDeleted);
+  };
 
   return (
     <div>
-      {tasks.map((task) => {
-        return (
-          <div className={styles.taskCard} key={task.id}>
-            <div className={styles.taskInsideBox}>
-
-              <input className={styles.checkbox} type='radio' onClick={(event) => handleIsDoneTask(event, task.id)} />
-
-              <h1 className={styles.taskMessage}>{task.message}</h1>
-
-              <button className={styles.trashButton}>
-                <Trash size={18} />
-              </button>
-            </div>
+      {tasks.map((task) => (
+        <div className={styles.taskCard} key={task.id}>
+          <div className={styles.taskInsideBox}>
+            <input
+              className={styles.checkbox} type='checkbox'
+              onChange={(event) => handleIsDoneTask(event.target.checked, task)}
+              checked={task.isDone}
+            />
+            <h1 className={`${styles.taskMessage} ${task.isDone ? styles.taskMessageDone : ''}`}>{task.message}</h1>
+            <button onClick={() => deleteToDo(task)} className={styles.trashButton}>
+              <Trash size={18} />
+            </button>
           </div>
-        );
-      })}
+        </div>
+      ))}
     </div>
   );
 }
