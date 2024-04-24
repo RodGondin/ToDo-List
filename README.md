@@ -2,9 +2,7 @@
 
 ![preview](./.github/preview.png)
 
-> To-do List app
-
-<p>A To-do List app with localstorage manage and some counting features.</p>
+> A To-do List app with localstorage manage and some counting features.
 
 ## Tecnologias
 
