@@ -128,3 +128,7 @@
   margin: 0;
   line-height: 140%;
 }
+
+.noTasksMessage img {
+  padding-bottom: 1rem;
+}
